@@ -1,27 +1,20 @@
 # В заданном списке вещественных чисел найдите разницу между максимальным
 # и минимальным значением дробной части элементов.
 
-#  class Program
-#     {
-#         static void Main(string[] args)
-#         {
-#             Random rnd = new Random();
-#             int[] d = new int[30];
-#             int max=0, min=100;
-#             for (int i = 0; i<d.Length; i++ )  d[i] = rnd.Next(100);
-#             for (int i = 0; i < d.Length; i++)
-#             {
-#                 if (d[i] > max) max = d[i];
-#                 if (d[i] < min) min = d[i];
-#             }
-           
-#                for (int i = 0; i < d.Length; i++) Console.Write(" "+d[i]);//выводим массив
-#                Console.WriteLine();
-#                  Console.WriteLine("max:  " + max);
-#                  Console.WriteLine("min  " +min);
-#                  Console.WriteLine("Разница максимального и минимального:  "+(max - min));
-#                 Console.ReadKey();
-#         }
-#     }
 
-# Тут мои полномочия все...
+import math
+
+
+def difference(numbers):
+    min = max = round(math.modf(numbers[0])[0], 2)
+    for number in numbers:
+        num = round(math.modf(number)[0], 2)
+        if max < num:
+            max = num
+        if num != 0 and min > num:
+            min = num
+    return max - min
+
+
+list = [1.1, 1.2, 3.1, 5, 10.01]
+print(f"Разница между максимальным и минимальным = {difference(list)}")
